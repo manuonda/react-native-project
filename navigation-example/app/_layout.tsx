@@ -2,9 +2,9 @@ import {Stack, Tabs, useRouter} from 'expo-router'
 import {AntDesign} from '@expo/vector-icons'
 import {Alert} from 'react-native'
 
-export default Tabs;
+//export default Tabs;
 
-/*
+
 export default function Layout(){
     const router = useRouter();
     return(
@@ -39,7 +39,13 @@ export default function Layout(){
            },
            headerTintColor: '#1E2632'
            }} />
+       <Stack.Screen 
+          name="home"
+          options={{
+            headerShown: false
+          }}
+       />
       </Stack>
     )
     
-}*/
+}
