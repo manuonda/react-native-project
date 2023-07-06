@@ -22,11 +22,12 @@ export default () => {
               }}
             />
             <Tabs.Screen 
-              name="messages/index"
+              name="messages"
               options={{
                 tabBarIcon : ({ color }) => (
                     <FontAwesome name="envelope" size={24} color={color} />
-                )
+                ),
+                headerShown: false
               }}
             />
 

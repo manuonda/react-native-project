@@ -1,8 +1,8 @@
 import { View , Text } from 'react-native'
-export default function messages () {
+export default function index () {
     return (
         <View>
-            <Text>INformaicon23232 3 </Text>
+            <Text> Informeacion numero 23 </Text>
         </View>
     )
 }
