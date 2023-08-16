@@ -2,23 +2,29 @@ import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { AntDesign } from '@expo/vector-icons';
+import { FlatList } from "react-native-gesture-handler";
+import { appointments } from "../data/appointments";
+import AppointmentItem from "./components/AppointmentItem";
 
 export default function Page() {
 
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        {/* <Searchbar value="informaciion" placeholder="Search Bar"/> */}
         <Link href={"/search"} asChild>
         <Pressable style={styles.searchBar}>
           <Text>Search for doctors , appointments...</Text>
-          <AntDesign name="search1" size={24} color="black" />
+          <AntDesign name="search1" size={20} color="black" />
         </Pressable>
 
         </Link>
-        <Text style={styles.title}>Hola Mundo mis datos de la vida</Text>
-        <Text style={styles.subtitle}>Modificacion de primear pagina.</Text>
-        <Link href={"/search"}>Search</Link>
+        <Text style={styles.title}>Upcoming appointments</Text>
+        <FlatList
+          style={{backgroundColor:"white", flex:1}}
+          data={appointments}
+          renderItem={(item) => <AppointmentItem  appointment={item}/> }
+          contentInsetAdjustmentBehavior="automatic"
+        />
       </View>
     </View>
   );
@@ -27,31 +33,27 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    padding: 24,
-    color: "white",
+    //alignItems: "center",
+    padding: 12,
+    backgroundColor: "white",
   },
   main: {
     flex: 1,
-    justifyContent: "center",
     maxWidth: 960,
     marginHorizontal: "auto",
   },
   title: {
-    fontSize: 64,
+    fontSize: 22,
     fontWeight: "bold",
+    alignItems:"center"
   },
-  subtitle: {
-    fontSize: 36,
-    color: "#38434D",
-  },
-
   searchBar: {
      borderWidth: StyleSheet.hairlineWidth,
      padding:10,
      borderRadius:50,
      flexDirection: 'row',
      justifyContent: 'space-between',
-     alignItems: 'center'
+     alignItems: 'center',
+     marginBottom: 10,
   }
 });
