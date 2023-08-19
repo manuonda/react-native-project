@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer"
+import { AppRegistry } from 'react-native';
+import { PaperProvider } from 'react-native-paper';
 import CodeQR from "./screens/codeqr";
 
 const Drawer = createDrawerNavigator();
@@ -21,10 +23,14 @@ function Article () {
 }
 export default function Page() {
   return (
-    <Drawer.Navigator>
+    <PaperProvider>
+      <Drawer.Navigator>
        <Drawer.Screen name="ABM" component={Feed}></Drawer.Screen>
        <Drawer.Screen name="Lectura Code QR" component={CodeQR}></Drawer.Screen>
+      
     </Drawer.Navigator>
+    </PaperProvider>
+    
   );
 }
 

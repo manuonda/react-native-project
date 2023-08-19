@@ -7,7 +7,7 @@ export default function RootLayout() {
        <Stack.Screen name="index" options={{ title: "Index"}}></Stack.Screen>
        <Stack.Screen name="search" options={{ title: "Search"}}></Stack.Screen>
      </Stack>
-   
+  
     </PaperProvider>
     )
 }
