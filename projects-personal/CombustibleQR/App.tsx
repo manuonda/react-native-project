@@ -1,10 +1,10 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import {PaperProvider} from "react-native-paper"
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
-import CodeQR from './screens/codeqr';
+import CodeQR from './src/screens/codeqr';
+import RootNavigation from './src/navigation';
 
 
 const Drawer = createDrawerNavigator();
@@ -28,13 +28,7 @@ function Article () {
 export default function App() {
   return (
     <PaperProvider>
-      <NavigationContainer>
-      <Drawer.Navigator>
-       <Drawer.Screen name="ABM" component={Feed}></Drawer.Screen>
-       <Drawer.Screen name="Lectura Code QR" component={CodeQR}></Drawer.Screen>
-      
-    </Drawer.Navigator>
-    </NavigationContainer>
+     <RootNavigation />
     </PaperProvider>
     
   );

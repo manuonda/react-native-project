@@ -1,0 +1,7 @@
+
+
+
+#Libraries a utilizar 
+npm install react-native-svg
+- icon : https://fonts.google.com/icons?selected=Material+Symbols+Outlined:search:FILL@0;wght@400;GRAD@0;opsz@48
+convert icon to react-native usando tool

@@ -5,11 +5,11 @@ import { RootStackParamLis } from '../navigation/main';
 
 type AboutProps = NativeStackScreenProps<RootStackParamLis,'About'>;
 
-export default function About({route}: AboutProps) {
-  const { name } = route.params;
+export default function About() {
+  //const { name } = route.params;
   return (
     <View>
-      <Text>Name parameter : {name}</Text>
+      <Text>Name parameter :</Text>
     </View>
   )
 }
