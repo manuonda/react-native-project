@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
+import { FormState } from '../hooks/useForm'
 
 const styles = StyleSheet.create({
     container: {
@@ -31,6 +32,23 @@ const styles = StyleSheet.create({
 
     }
 })
+
+// const initialState: FormState = {
+//   email : {
+//     value: '',
+//     error:'',
+//     hasError: false,
+//     active:false,
+//     isFormValid:false
+//   },
+//  password :{
+//   value: '',
+//   error:'',
+//   hasError: false,
+//   active:false,
+//   isFormValid:false
+//  }
+// }
 
 export default function Login() {
   const [username, setUsername ] = useState<string>("");

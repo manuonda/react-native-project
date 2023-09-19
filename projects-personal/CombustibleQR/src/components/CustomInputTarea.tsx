@@ -1,15 +1,18 @@
+
+
 import { View, Text, TextInput , StyleSheet, NativeSyntheticEvent, TextInputChangeEventData } from 'react-native'
 import React, { Dispatch, SetStateAction } from 'react'
+import { Tarea } from '../types/tarea.td';
 
 
 type Props = {
     value:string;
     key: string;
-    setValue: Dispatch<SetStateAction<string | number>>;
+    setValue: Dispatch<SetStateAction<Tarea>>;
     placeHolder:string;
 }
 
-const CustomInput = ({value,key,setValue,placeHolder}: Props) => {
+const CustomInputTarea = ({value,key,setValue,placeHolder}: Props) => {
 
     const handleChange = (event) => {
        const {name, type, text} = event;
@@ -45,4 +48,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default CustomInput
+export default CustomInputTarea

@@ -136,6 +136,7 @@ const style = StyleSheet.create({
         marginBottom: 20,
       },
     qrContainer: {
+        flex:1,
         width: '100%',
         aspectRatio:1,
         overflow: 'hidden',

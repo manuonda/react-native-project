@@ -1,5 +1,6 @@
 {
   "expo": {
+    "android.package":"com.mobile",
     "name": "CombustibleQR",
     "slug": "CombustibleQR",
     "version": "1.0.0",
