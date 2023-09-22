@@ -127,7 +127,17 @@ export const TareaService = {
           console.error('Error findById : ', error);
           return Promise.resolve(null);
         }
-    }
+    },
+    deleteById: async  function(id:number): Promise<void> {
+         const sql = `delete from tareas where id   =${id}`;
+         try {
+            const result: any = await DatabaseService.executeSQL(sql, []);
+             
+         } catch (error) {
+            console.error('Error deleteById: ', error);
+            return Promise.reject(error);
+         } 
+    },
 
 }
 

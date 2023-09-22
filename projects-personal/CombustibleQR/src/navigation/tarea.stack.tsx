@@ -6,11 +6,12 @@ import React from 'react'
 import Tarea from '../screens/tarea/tarea';
 import Tareas from '../screens/tarea/tareas';
 import { Button } from 'react-native';
+import { Camera } from 'expo-camera';
+import Camara from '../screens/tarea/camara/Camara';
 
 
 export type TareasStackParamList = {
   Tareas: undefined,
-  Tarea: undefined,
 }
 
 
@@ -37,21 +38,7 @@ export const TareasStackNavigation = () => {
 
         }}
       />
-      <TareaStack.Screen name="Tarea" component={Tarea}
-        options={{
-          headerTitle: 'Tarea',
-          headerShown: true,
-          statusBarColor:'#7986CB',
-          headerStyle: {
-            backgroundColor:'#7986CB'
-          },
-          headerTintColor:'white',
-          headerTitleStyle:{
-            fontWeight:'400'
-          } 
-
-        }}
-      />
+      
     </TareaStack.Navigator>
   )
 }

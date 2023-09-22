@@ -7,22 +7,18 @@ import CodeQR from '../screens/codeqr';
 import Login from '../screens/login';
 import Tareas from '../screens/tarea/tareas';
 import 'react-native-gesture-handler';
-import { TareasStackNavigation } from './tarea.stack';
+import { HomeStackParamList } from './home';
 
-type RootDrawerParamList = {
-  TareaStack: undefined;
-  Login: undefined;
-  CodeQR: undefined;
-}
 
-const Drawer = createDrawerNavigator<RootDrawerParamList>();
+
+const Drawer = createDrawerNavigator<HomeStackParamList>();
 
 const DrawerNavigation = () => {
   return (
       <Drawer.Navigator
-       initialRouteName='TareaStack'
-       screenOptions={{ headerShown:false }}>
-      <Drawer.Screen name="TareaStack" component={TareasStackNavigation} 
+       initialRouteName='Tareas'
+       screenOptions={{ headerShown:true }}>
+      <Drawer.Screen name="Tareas" component={Tareas} 
       />  
       <Drawer.Screen name="Login" component={Login} options={{
         headerShown:true

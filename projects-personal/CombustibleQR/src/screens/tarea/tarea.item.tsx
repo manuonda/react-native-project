@@ -36,6 +36,7 @@ const TareaItem = ({tarea,navigation}: PropsItem) => {
         screen: 'Tarea',
         params: {
           id: tarea.id,
+          image:'',
         }
       });  
     };

@@ -70,6 +70,7 @@ export default function Tareas({navigation} ) {
       screen: 'Tarea',
       params: {
         id: null,
+        image: null,
       }
     });
   }
