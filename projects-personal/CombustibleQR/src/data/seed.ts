@@ -10,4 +10,17 @@ export const seed = `
     filePath TEXT,
     cameraPath TEXT
   );
+
+  CREATE TABLE IF NOT EXISTS vehiculo (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    idTipoVehiculo TEXT,
+    tipoVehiculo string,
+    idTipoCombustible INTEGER,
+    tipoCombustible TEXT,
+    numeroLegajo TEXT,
+    numeroChasis TEXT,
+    patente TEXT,
+    idDependencia INTEGER,
+    dependencia TEXT
+  );
 `;
