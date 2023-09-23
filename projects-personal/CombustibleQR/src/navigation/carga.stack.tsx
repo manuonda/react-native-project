@@ -1,8 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import CargaConductor from "../screens/carga/conductor/carga.conductor";
-import CargaVehiculo from "../screens/carga/vehiculo/carga.vehiculo";
-import Cargas from "../screens/carga/cargas";
-import { CardActionsProps } from "react-native-paper";
+import CargaConductor from "../screens/carga/carga.conductor";
+import CargaVehiculo from "../screens/carga/carga.vehiculo";
 
 type CargaParamList = {
   Conductor: undefined,

@@ -66,8 +66,8 @@ export default function Tareas({navigation} ) {
 
 
   const handleAdd =() => {
-    navigation.navigate('Tarea', {
-      screen: 'Tarea',
+    navigation.navigate('Conductor', {
+      screen: 'Conductor',
       params: {
         id: null,
         image: null,
