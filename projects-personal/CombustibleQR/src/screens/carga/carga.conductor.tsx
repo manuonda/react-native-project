@@ -5,6 +5,7 @@ import { View, Button, Modal } from "react-native"
 import { Ionicons, Octicons, MaterialIcons, AntDesign, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Portal ,Text } from "react-native-paper";
 import CodeQR from "../codeqr";
+import CodeQR2 from "../codqr2";
 
 export default function CargaConductor({ navigation, route }) {
    
@@ -12,12 +13,11 @@ export default function CargaConductor({ navigation, route }) {
       id: null
    });
 
-   const [visible, setVisible] = useState(false);
-
+  const [visible, setVisible] = useState(false);
+  const [data,setData] = useState("");
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
-  const containerStyle = {backgroundColor: 'white', padding: 20};
-
+  
    useEffect(() => {
       navigation.setOptions({
         headerRight: () => (
@@ -47,12 +47,7 @@ export default function CargaConductor({ navigation, route }) {
    
    return(
    
-     <View 
-       style={{
-         flex:1,
-         padding: 20,
-       }}
-     >
+     <View  style={{ flex:1, padding: 20 }}>
      <CargaItem 
         label={"Nombre"}
         name={"nombre"}
@@ -97,7 +92,7 @@ export default function CargaConductor({ navigation, route }) {
           <Button onPress={() => setVisible(false)} 
            title="CLOSE"
           />
-          <CodeQR />
+          <CodeQR2 setData={setData} setVisibleModal={setVisible}/>
         </Modal>
       </Portal>
       

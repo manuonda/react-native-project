@@ -8,6 +8,7 @@ import Login from '../screens/login';
 import Tareas from '../screens/tarea/tareas';
 import 'react-native-gesture-handler';
 import { HomeStackParamList } from './home';
+import CodeQR2 from '../screens/codqr2';
 
 
 
@@ -29,7 +30,15 @@ const DrawerNavigation = () => {
         headerShown:true
       }}
     />
+
+<Drawer.Screen name="CodeQR2" component={CodeQR2}
+      options={{
+        title:"Code QR2",
+        headerShown:true
+      }}
+    />
    
+ 
     </Drawer.Navigator>
   )
 }

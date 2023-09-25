@@ -4,8 +4,8 @@ import { Button } from "react-native-paper"
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import QRCode from "react-native-qrcode-svg"
 
-export default function CodeQR() {
-
+export default function CodeQR({setData}) {
+    
     const [scanned, setScanned] = useState<boolean>(false);
     const handleScanner = () => setScanned(!scanned);
 
@@ -61,6 +61,7 @@ export default function CodeQR() {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(false);
+        setData(data);
         alert(`Bar code with type ${type} and data ${data} has been scanned`);
     }
 

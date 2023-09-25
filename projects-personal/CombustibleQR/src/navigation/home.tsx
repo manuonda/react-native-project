@@ -4,6 +4,7 @@ import CargaConductor from "../screens/carga/carga.conductor";
 import Tarea from "../screens/tarea/tarea";
 import CargaStackNavigation from "./carga.stack";
 import CargaVehiculo from "../screens/carga/carga.vehiculo";
+import CargaCombustible from "../screens/carga/carga.combustible";
 
 
 export type HomeStackParamList = {
@@ -15,6 +16,8 @@ export type HomeStackParamList = {
     Conductor: { id: string, image: string },
     Vehiculo: undefined,
     CargaStack:undefined,
+    CodeQR2: undefined,
+    CargaCombustible: undefined,
 }
 
 
@@ -77,8 +80,24 @@ export default function HomeStackNavigation() {
                 }}
             />
 
+           <HomeStack.Screen name="CargaCombustible" component={CargaCombustible}
+                options={{
+                    headerTitle: 'Carga Combustible',
+                    headerShown: true,
+                    statusBarColor: '#7986CB',
+                    headerStyle: {
+                        backgroundColor: '#7986CB'
+                    },
+                    headerTintColor: 'white',
+                    headerTitleStyle: {
+                        fontWeight: '400'
+                    }
 
-<HomeStack.Screen name="CargaStack" component={CargaStackNavigation}
+                }}
+            />
+
+
+           <HomeStack.Screen name="CargaStack" component={CargaStackNavigation}
                 options={{
                     headerTitle: 'Conductor',
                     headerShown: true,
