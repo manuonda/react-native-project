@@ -1,6 +1,15 @@
 URL : Code generator qr https://www.the-qrcode-generator.com/
 #Information de cadena de texto para conductor
-type:conductor;nombre: "David";apellido:"Garcia";jerarquia: "Agente";numeroLegajo: 9046;numeroCredencial:4235;ejemplar:"C";
+Conductor
+==========
+{ "tipo": "conductor","nombre": "David","apellido": "Garcia","jerarquia":"Agente","numeroLegajo": "9046","numeroCredencial": "4235","ejemplar": "C"}
+
+
+TipoVehiculo
+============
+{ "tipo": "vehiculo","idTipoVehiculo": 1,"tipoVehiculo":"camioneta", "idTipoCombustible":1,
+"tipoCombustible":"nafta","numeroLegajo": "9872", "numeroChasis":"AB-23", "numeroMotor":"abcd23",
+"chapaPatente":"Chapa onda","idDependencia":23, "dependencia":"Comisaria numero 23"}
 
 
 Se tendria que tener un listado de estaciones de Servicios

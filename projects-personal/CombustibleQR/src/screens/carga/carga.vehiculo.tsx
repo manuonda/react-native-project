@@ -1,9 +1,12 @@
 import { Portal, Text } from "react-native-paper"
+import { FontAwesome } from '@expo/vector-icons'; 
 import CargaItem from "./components/carga.item"
-import { Button, Modal, View } from "react-native"
-import { useState } from "react";
+import { Alert, Button, Modal, View } from "react-native"
+import { useEffect, useState } from "react";
 import { Vehiculo } from "../../types/vehiculo";
 import CodeQR2 from "../codqr2";
+import { converToVehiculo, isTipoCarga } from "../../util/util";
+import { TipoCarga } from "../../types/tipo.carga.enum";
 
 export default function CargaVehiculo({ navigation, params }) {
 
@@ -33,6 +36,29 @@ export default function CargaVehiculo({ navigation, params }) {
          }
        })
     }
+
+    
+
+    useEffect(() => {
+        console.log("funciton data ", data);
+        if ( data != "" && data !== undefined) {
+           const isTipo = isTipoCarga(data, TipoCarga.Vehiculo.toString());
+           if (!isTipo) {
+              const result = converToVehiculo(data);
+              setVehiculo(result);  
+           } else {
+             Alert.alert("Información","El Code Qr no es de Vehiculo");
+           }
+  
+        }
+        navigation.setOptions({
+          headerRight: () => (
+            <FontAwesome name="qrcode" size={24} color="white"
+            onPress={showModal} />
+            
+          )
+        });
+     },[data])
 
     return (
         <View style={{ flex: 1, padding: 20 }}>
@@ -98,13 +124,10 @@ export default function CargaVehiculo({ navigation, params }) {
                 </Modal>
             </Portal>
 
-            <Button onPress={showModal}
-                title="Modal"
-            />
-
+          
             <Button
                 onPress={handleSubmit}
-                title="Siguiente32" />
+                title="Siguiente" />
 
         </View>
 

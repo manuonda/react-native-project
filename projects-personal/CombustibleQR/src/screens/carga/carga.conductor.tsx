@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import CargaItem from "./components/carga.item";
 import { Conductor } from "../../types/conductor.td";
-import { View, Button, Modal } from "react-native"
+import { View, Button, Modal, Alert } from "react-native"
+import { FontAwesome } from '@expo/vector-icons'; 
 import { Ionicons, Octicons, MaterialIcons, AntDesign, Entypo, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Portal ,Text } from "react-native-paper";
-import CodeQR from "../codeqr";
 import CodeQR2 from "../codqr2";
+import { converToConductor, isTipoCarga } from "../../util/util";
+import { TipoCarga } from "../../types/tipo.carga.enum";
 
 export default function CargaConductor({ navigation, route }) {
    
@@ -14,19 +16,33 @@ export default function CargaConductor({ navigation, route }) {
    });
 
   const [visible, setVisible] = useState(false);
-  const [data,setData] = useState("");
+  const [data,setData] = useState<string>("");
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   
    useEffect(() => {
+      console.log("funciton data ", data);
+      console.log("Tipo Carga : " + TipoCarga.Conductor.toString());
+      if ( data != "" && data !== undefined) {
+         const isTipo = isTipoCarga(data, TipoCarga.Conductor.toString());
+         console.log("isTipo " + TipoCarga.Conductor.toString() + "  => "+isTipo);
+         if (isTipo) {
+            const result = converToConductor(data);
+            setConductor(result);  
+         } else {
+           Alert.alert("Información","El Code Qr no es de Conductor");
+         }
+
+      }
       navigation.setOptions({
         headerRight: () => (
-          <MaterialCommunityIcons name="delete" size={24} color="white"
-            onPress={() => alert("hola mundo")} />
+          <FontAwesome name="qrcode" size={24} color="white"
+          onPress={showModal} />
         )
       });
-   },[])
+   },[data])
 
+    
    const handleChange =(name,e) => {
       setConductor({
          ...conductor,
@@ -96,14 +112,15 @@ export default function CargaConductor({ navigation, route }) {
         </Modal>
       </Portal>
       
-      <Button  onPress={showModal} 
-        title="Modal"
-      />
-      
-      <Button 
+  
+      <View>
+        
+        <Button 
          onPress={handleSubmit}
-         title="Siguiente32"/>
+         title="Siguiente"/>
 
+      </View>
+      
      </View>
       
 

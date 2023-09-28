@@ -3,8 +3,8 @@ export type Conductor = {
     nombre?: string,
     apellido?: string;
     jerarquia?: string;
-    numeroLegajo?: number;
-    numeroCredencial?: number;
+    numeroLegajo?: string ;
+    numeroCredencial?: string ;
     ejemplar?: string;
 
 }

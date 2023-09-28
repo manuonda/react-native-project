@@ -66,11 +66,15 @@ export default function CargaCombustible({ navigation, params }) {
 
            
 
-           
-
-            <Button
-                onPress={handleSubmit}
-                title="Siguiente32" />
+           <View style={{
+             flexDirection:"row",
+             width: "100%",
+             alignContent: "space-between",
+             paddingTop: 10,
+           }}>
+             <Button title="Cancelar"/>
+             <Button title="Guardar" />
+           </View>
 
         </View>
 

@@ -8,6 +8,6 @@ export type Vehiculo = {
     numeroChasis?: string;
     numeroMotor?: string;
     chapaPatente?: string;
-    idDependencia?: string;
+    idDependencia?: number;
     dependecia?: string;
 }
