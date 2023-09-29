@@ -1,6 +1,5 @@
 import { DatabaseConnection } from "../database/connection"
 import { Conductor } from "../types/conductor.td";
-import { Tarea } from "../types/tarea.td";
 import { DatabaseService } from "./database.service";
 
 
@@ -10,31 +9,42 @@ const id = "id";
 
 export const ConductorService = {
 
-    guardar: async (conductor: Conductor):Promise<Conductor> => {
+    guardar: async (entity: Conductor):Promise<Conductor> => {
        
         const sql = `insert into conductores(
             nombre, apellido, jerarquia,
-            numeroLegajo, numeroCredencial,ejemplar
+            numeroLegajo, numeroCredencial,
+            ejemplar
             ) values(
               ?,?,?,?,?,?  
             )`;
         const params = [
-            conductor.nombre,
-            conductor.apellido,
-            conductor.jerarquia,
-            conductor.numeroLegajo,
-            conductor.numeroCredencial,
-            conductor.ejemplar
+            entity.nombre,
+            entity.apellido,
+            entity.jerarquia,
+            entity.numeroLegajo,
+            entity.numeroCredencial,
+            entity.ejemplar
         ];
+        let conductor: Conductor = {};
         try {
-            const result = await DatabaseService.executeSQL(sql, params);
-            return Promise.resolve(result);
-
-        } catch (error) {
-            console.error("Error save data conductor: ", error);
-            return Promise.reject(error);
+            const result: any  = await DatabaseService.executeSQL(sql, params);
+            const { insertId } = result;
+            conductor = {
+              id: insertId,
+              nombre    :entity.nombre,
+              apellido  :entity.apellido,
+              jerarquia  :entity.jerarquia,
+              numeroLegajo  :entity.numeroLegajo,
+              numeroCredencial  :entity.numeroCredencial,
+              ejemplar  :entity.ejemplar
+            }
+            return Promise.resolve(conductor);
+              
+        }catch(error) {
+          console.error('Error Save Conductor : ', error);
+          return Promise.resolve(null);
         }
-
 
     },
 }

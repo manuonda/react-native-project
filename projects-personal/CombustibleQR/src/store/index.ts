@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { Conductor } from "../types/conductor.td";
 import { Vehiculo } from "../types/vehiculo";
-import { Combustible } from "../types/combustible";
+import { Combustible } from "../types/carga.combustible";
 
 interface ICargaCombustible {
     conductorState: Conductor;

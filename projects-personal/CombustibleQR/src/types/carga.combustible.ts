@@ -1,4 +1,4 @@
-export type Combustible = {
+export type CargaCombustible = {
     id: number;
     idEstacionServicio?: string;
     estacionServicio?: string;
@@ -6,4 +6,6 @@ export type Combustible = {
     nivelTanque?: string;
     litrosHabilitados ?: string;
     numeroRemito?: string;
+    idConductor?: number;
+    idVehiculo?: number;
 }

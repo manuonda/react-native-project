@@ -1,12 +1,14 @@
 import CargaItem from "./components/carga.item"
 import { Button , View  } from "react-native"
 import { useState } from "react";
-import { Combustible } from "../../types/combustible";
 import { useCargaCombustibleStore } from "../../store";
+import { ConductorService } from "../../services/conductor.service";
+import { VehiculoService } from "../../services/vehiculo.service";
+import { CargaCombustible  as TCargaCombustible} from "../../types/carga.combustible";
 
-export default function CargaCombustible({ navigation, params }) {
+export default function Carga({ navigation, params }) {
 
-    const [combustible, setCombustible] = useState<Combustible>({
+    const [combustible, setCombustible] = useState<TCargaCombustible>({
         id: null
     });
     const conductor  = useCargaCombustibleStore((state) => state.conductorState );
@@ -21,13 +23,15 @@ export default function CargaCombustible({ navigation, params }) {
     }
 
 
-    const handleSubmit = () => {
-       navigation.navigate('CargaCombustible',{
-         screen: 'CargaCombustible',
-         params : {
-            id: null
-         }
-       })
+    const handleSubmit =async  () => {
+       try {
+         let resultConductor = await  ConductorService.guardar(conductor);   
+         let resultVehiculo = await VehiculoService.guardar(vehiculo);
+         console.log("resultConductor : ", resultConductor);
+         console.log("resultVehiculo : ", resultVehiculo); 
+       } catch (error) {
+        console.error("Error save Data : ", error);
+       }
     }
 
     return (
@@ -77,7 +81,7 @@ export default function CargaCombustible({ navigation, params }) {
              paddingTop: 10,
            }}>
              <Button title="Cancelar"/>
-             <Button title="Guardar" />
+             <Button title="Guardar" onPress={handleSubmit} />
            </View>
 
         </View>

@@ -29,6 +29,9 @@ export const converToConductor = ( cadena : string): Conductor => {
 
 export const converToVehiculo = ( cadena : string): Vehiculo => {
     const jsonData = JSON.parse(cadena);
+    console.log("===========");
+    console.log("jsonData : ", jsonData);
+    console.log("===============");
     let vehiculo;
     try {
       vehiculo = {
@@ -41,7 +44,7 @@ export const converToVehiculo = ( cadena : string): Vehiculo => {
         numeroMotor: jsonData.numeroMotor,
         chapaPatente: jsonData.chapaPatente,
         idDependencia: jsonData.idDependencia,
-        dependecia: jsonData.dependecia
+        dependencia: jsonData.dependencia
       };
       console.log("vehiculo : ",vehiculo);
   

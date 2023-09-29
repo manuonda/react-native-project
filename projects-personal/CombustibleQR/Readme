@@ -16,7 +16,12 @@ Se tendria que tener un listado de estaciones de Servicios
 ==========================================================
 
 Tareas
- 0 -  Crear los seed para Conductor, Vehiculo, Carga
- 1 - Terminar de Guardar Conducotr 
- 2 - Terminar de Guardar Vehiculo 
+ 0 -  Crear los seed para Conductor, Vehiculo, Carga - listok 
+ 1 - Terminar de Guardar Conducotr - listok
+ 2 - Terminar de Guardar Vehiculo - listok 
+
  3 - Terminar de Guardar CargaCombustible
+ 4 - Mostrar el listado de Carga de Combustible.
+ 5 - Mostrar acciones al seleccionar una caraga combustible(Bottom Sheet)
+ 6 - Mejorar diseño de QR
+ 7 - 

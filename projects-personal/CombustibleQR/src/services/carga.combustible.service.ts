@@ -1,40 +1,61 @@
 import { DatabaseConnection } from "../database/connection"
+import { CargaCombustible } from "../types/carga.combustible";
 import { Tarea } from "../types/tarea.td";
 import { DatabaseService } from "./database.service";
 
 
 const db = DatabaseConnection.getConnection();
-const table = "tareas";
+const table = "cargas";
 const id = "id";
 
-export const TareaService = {
+export const CargaCombustibleService = {
 
-    guardar: async (tarea: Tarea) => {
+    guardar: async (entity: CargaCombustible):Promise<CargaCombustible> => {
        
-        const sql = `insert into tareas(
-            nombre, descripcion, fechaVencimiento,
-            repetir, nota, filePath, cameraPath
+        const sql = `insert into cargas(
+            idEstacionServicio,
+            estacionServicio,
+            kilometraje,
+            nivelTanque,
+            litrosHabilitados,
+            numeroRemito,
+            idConductor,
+            idVehiculo
             ) values(
                 ?,?,?,?,
-                ?,?,?
+                ?,?,?,?
             )`;
         const params = [
-            tarea.nombre,
-            tarea.descripcion,
-            tarea.fechaVencimiento,
-            tarea.repetir,
-            tarea.nota,
-            tarea.filePath,
-            tarea.cameraPath
+            entity.idEstacionServicio,
+            entity.estacionServicio,
+            entity.kilometraje,
+            entity.nivelTanque,
+            entity.litrosHabilitados ,
+            entity.numeroRemito,
+            entity.idConductor,
+            entity.idVehiculo
         ];
         try {
-            const result = await DatabaseService.executeSQL(sql, params);
-            console.log("Resultado : ", result);
-            return Promise.resolve(result);
-
-        } catch (error) {
-            console.error("Error save data: ", error);
-            return Promise.reject(error);
+            const result: any  = await DatabaseService.executeSQL(sql, params);
+            const { rows } = result;
+            const { _array } = rows;
+            const data = _array[0];
+            let carga: CargaCombustible = {
+                id : data.id,
+                idEstacionServicio:data.idEstacionServicio,
+                estacionServicio: data.estacionServicio,
+                kilometraje: data.kilometraje,
+                nivelTanque: data.nivelTanque,
+                litrosHabilitados : data.litrosHabilitados ,
+                numeroRemito :data.numeroRemito,
+                idConductor: data.idConductor,
+                idVehiculo : data.idVehiculo
+            }
+            return Promise.resolve(carga);
+              
+        }catch(error) {
+          console.error('Error Save Carga : ', error);
+          return Promise.resolve(null);
         }
 
 
@@ -68,7 +89,7 @@ export const TareaService = {
 
     },
 
-    all: async ():Promise<Tarea[]> => {
+    all: async ():Promise<CargaCombustible[]> => {
         const tareas: Tarea[] = [];
         const sql = "select * from tareas ";
         const result: any = await DatabaseService.executeSQL(sql, []);

@@ -10,7 +10,7 @@ const id = "id";
 
 export const VehiculoService = {
 
-    guardar: async (vehiculo: Vehiculo) => {
+        guardar: async (entity: Vehiculo) => {
        
         const sql = `insert into vehiculos(
             idTipoVehiculo,
@@ -22,33 +22,45 @@ export const VehiculoService = {
             numeroMotor,
             chapaPatente,
             idDependencia,
-            dependecia,
+            dependencia
             ) values(
-                ?,?,?,?,?
+                ?,?,?,?,?,
                 ?,?,?,?,?
             )`;
         const params = [
-            vehiculo.idTipoVehiculo,
-            vehiculo.tipoVehiculo,
-            vehiculo.idTipoCombustible,
-            vehiculo.tipoCombustible,
-            vehiculo.numeroLegajo,
-            vehiculo.numeroChasis,
-            vehiculo.numeroMotor,
-            vehiculo.chapaPatente,
-            vehiculo.idDependencia,
-            vehiculo.dependecia,
+            entity.idTipoVehiculo,
+            entity.tipoVehiculo,
+            entity.idTipoCombustible,
+            entity.tipoCombustible,
+            entity.numeroLegajo,
+            entity.numeroChasis,
+            entity.numeroMotor,
+            entity.chapaPatente,
+            entity.idDependencia,
+            entity.dependencia,
         ];
         try {
-            const result = await DatabaseService.executeSQL(sql, params);
-            console.log("Resultado : ", result);
-            return Promise.resolve(result);
-
-        } catch (error) {
-            console.error("Error save data: ", error);
-            return Promise.reject(error);
+            const result: any  = await DatabaseService.executeSQL(sql, params);
+            const { insertId } = result;
+            let vehiculo:Vehiculo = {
+                id : insertId,
+                idTipoVehiculo:entity.idTipoVehiculo,
+                tipoVehiculo:entity.tipoVehiculo,
+                idTipoCombustible:entity.idTipoCombustible,
+                tipoCombustible:entity.tipoCombustible,
+                numeroLegajo:entity.numeroLegajo,
+                numeroChasis:entity.numeroChasis,
+                numeroMotor:entity.numeroMotor,
+                chapaPatente:entity.chapaPatente,
+                idDependencia:entity.idDependencia,
+                dependencia:entity.dependencia,
+            }
+            return Promise.resolve(vehiculo);
+              
+        }catch(error) {
+          console.error('Error save Vehiculo : ', error);
+          throw new Error("Error saving Vehiculo : ", error);
         }
-
 
     },
 

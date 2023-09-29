@@ -12,17 +12,26 @@ export const DatabaseConnection = {
  export const initAutogenerate = async () => {
     console.log("initAutogenerate");
     const db = DatabaseConnection.getConnection();
-    console.log("seed : " + seed);
+    //console.log("seed : " + seed);
+    const list = seed.split(";");
+    //console.log("list seed : ", list);
+    for ( const table of list) {
     db.transaction(tx => {
-      tx.executeSql(seed, 
-      [],
-      (tx,results) => {
-        console.log("Result :" , results);
-      },
-      (error) => {
-        console.log("Error: ", error);
-        return true;
-      });
-    })  
-  }
+    
+        console.log("table  =>  ", table.trim() , "legth : ", table.trim().length);
+        if ( table.trim() !== "" && table.trim().length > 0) {
+          tx.executeSql(table, 
+            [],
+            (tx,results) => {
+              console.log("Result SQL :" , results);
+            },
+            (error) => {
+              console.log("Error SQL InitAutoGenerate: ", error);
+              return true;
+            });
+        }
+      
+    }) 
+  } 
+}
 

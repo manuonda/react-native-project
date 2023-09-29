@@ -113,7 +113,7 @@ export default function CargaVehiculo({ navigation, params }) {
             <CargaItem
                 label={"Dependencia"}
                 name={"dependencia"}
-                value={vehiculo.dependecia}
+                value={vehiculo.dependencia}
                 setChange={handleChange}
             />
 
