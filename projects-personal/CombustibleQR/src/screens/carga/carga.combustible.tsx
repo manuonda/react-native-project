@@ -1,13 +1,17 @@
 import CargaItem from "./components/carga.item"
 import { Button , View  } from "react-native"
 import { useState } from "react";
-import { Combustible } from "../../types/carga.combustible.td";
+import { Combustible } from "../../types/combustible";
+import { useCargaCombustibleStore } from "../../store";
 
 export default function CargaCombustible({ navigation, params }) {
 
     const [combustible, setCombustible] = useState<Combustible>({
         id: null
     });
+    const conductor  = useCargaCombustibleStore((state) => state.conductorState );
+    const vehiculo = useCargaCombustibleStore((state) => state.vehiculoState);
+    console.log("conductor : {}", conductor , "vehiculo : ", vehiculo);
 
     const handleChange = (name, e) => {
         setCombustible({

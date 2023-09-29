@@ -1,5 +1,5 @@
 export enum TipoCarga {
-   Conductor ="Conductor",
-   Vehiculo  ="Vehiculo",
-   Combustible = "Combustible",
+   Conductor ="conductor",
+   Vehiculo  ="vehiculo",
+   Combustible = "combustible",
 };

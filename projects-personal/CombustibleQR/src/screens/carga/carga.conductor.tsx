@@ -8,12 +8,17 @@ import { Portal ,Text } from "react-native-paper";
 import CodeQR2 from "../codqr2";
 import { converToConductor, isTipoCarga } from "../../util/util";
 import { TipoCarga } from "../../types/tipo.carga.enum";
+import { useCargaCombustibleStore } from "../../store";
 
 export default function CargaConductor({ navigation, route }) {
    
    const [conductor, setConductor] = useState<Conductor>({
       id: null
    });
+   const conductorState = useCargaCombustibleStore( state => state.conductorState);
+   console.log("conductor state", conductorState);
+   const updateConductor= useCargaCombustibleStore(state =>  state.updateConductor);
+
 
   const [visible, setVisible] = useState(false);
   const [data,setData] = useState<string>("");
@@ -21,14 +26,16 @@ export default function CargaConductor({ navigation, route }) {
   const hideModal = () => setVisible(false);
   
    useEffect(() => {
+      console.log(" ======= Carga Conductor ")
       console.log("funciton data ", data);
       console.log("Tipo Carga : " + TipoCarga.Conductor.toString());
       if ( data != "" && data !== undefined) {
          const isTipo = isTipoCarga(data, TipoCarga.Conductor.toString());
          console.log("isTipo " + TipoCarga.Conductor.toString() + "  => "+isTipo);
          if (isTipo) {
-            const result = converToConductor(data);
+            const result = converToConductor(data) ;
             setConductor(result);  
+            updateConductor(result);
          } else {
            Alert.alert("Información","El Code Qr no es de Conductor");
          }
@@ -36,7 +43,7 @@ export default function CargaConductor({ navigation, route }) {
       }
       navigation.setOptions({
         headerRight: () => (
-          <FontAwesome name="qrcode" size={24} color="white"
+          <FontAwesome name="qrcode" size={26} color="white"
           onPress={showModal} />
         )
       });

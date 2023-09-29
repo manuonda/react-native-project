@@ -2,6 +2,7 @@ import { Conductor } from "../types/conductor.td";
 import { Vehiculo } from "../types/vehiculo";
 
 export const isTipoCarga = (cadena :string , tipo:string )  => {
+    console.log("Cadena process : ", cadena);
     const jsonData = JSON.parse(cadena);
     return jsonData.tipo === tipo;
 }
@@ -10,7 +11,7 @@ export const converToConductor = ( cadena : string): Conductor => {
   const jsonData = JSON.parse(cadena);
   let conductor;
   try {
-    conductor = {
+     let conductor: Conductor = {
         nombre: jsonData.nombre,
         apellido: jsonData.apellido,
         jerarquia: jsonData.jerarquia,

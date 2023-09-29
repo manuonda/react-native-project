@@ -14,3 +14,9 @@ TipoVehiculo
 
 Se tendria que tener un listado de estaciones de Servicios
 ==========================================================
+
+Tareas
+ 0 -  Crear los seed para Conductor, Vehiculo, Carga
+ 1 - Terminar de Guardar Conducotr 
+ 2 - Terminar de Guardar Vehiculo 
+ 3 - Terminar de Guardar CargaCombustible

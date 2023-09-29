@@ -7,6 +7,7 @@ import { Vehiculo } from "../../types/vehiculo";
 import CodeQR2 from "../codqr2";
 import { converToVehiculo, isTipoCarga } from "../../util/util";
 import { TipoCarga } from "../../types/tipo.carga.enum";
+import { useCargaCombustibleStore } from "../../store";
 
 export default function CargaVehiculo({ navigation, params }) {
 
@@ -14,10 +15,13 @@ export default function CargaVehiculo({ navigation, params }) {
         id: null
     });
 
+    const updateVehiculo = useCargaCombustibleStore(state => state.updateVehiculo);
+
     const [visible, setVisible] = useState(false);
     const [data, setData] = useState("");
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
+   
 
 
     const handleChange = (name, e) => {
@@ -43,10 +47,11 @@ export default function CargaVehiculo({ navigation, params }) {
         console.log("funciton data ", data);
         if ( data != "" && data !== undefined) {
            const isTipo = isTipoCarga(data, TipoCarga.Vehiculo.toString());
-           if (!isTipo) {
+           if (isTipo) {
               const result = converToVehiculo(data);
               setVehiculo(result);  
-           } else {
+              updateVehiculo(result);
+            } else {
              Alert.alert("Información","El Code Qr no es de Vehiculo");
            }
   
