@@ -20,8 +20,8 @@ Tareas
  1 - Terminar de Guardar Conducotr - listok
  2 - Terminar de Guardar Vehiculo - listok 
 
- 3 - Terminar de Guardar CargaCombustible
+ 3 - Terminar de Guardar CargaCombustible - ok
  4 - Mostrar el listado de Carga de Combustible.
  5 - Mostrar acciones al seleccionar una caraga combustible(Bottom Sheet)
  6 - Mejorar diseño de QR
- 7 - 
+ 7 - Mostrar button action sheet para mostrar acciones(Editar, Borrar);

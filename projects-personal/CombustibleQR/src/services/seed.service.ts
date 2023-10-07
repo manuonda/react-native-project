@@ -9,16 +9,13 @@ export const DatabaseConnection = {
    * Funcion  que permite generar los registros 
    * de la base de datos
    */
- export const initAutogenerate = async () => {
-    console.log("initAutogenerate");
+ export const initSeedSql = async (): Promise<boolean> => {
+    console.log("-- initSeedSql");
     const db = DatabaseConnection.getConnection();
-    //console.log("seed : " + seed);
     const list = seed.split(";");
-    //console.log("list seed : ", list);
     for ( const table of list) {
     db.transaction(tx => {
-    
-        console.log("table  =>  ", table.trim() , "legth : ", table.trim().length);
+         //console.log("table  =>  ", table.trim() , "legth : ", table.trim().length);
         if ( table.trim() !== "" && table.trim().length > 0) {
           tx.executeSql(table, 
             [],
@@ -27,11 +24,13 @@ export const DatabaseConnection = {
             },
             (error) => {
               console.log("Error SQL InitAutoGenerate: ", error);
-              return true;
+              return false;
             });
         }
       
     }) 
   } 
+   console.log("-- salid initSeedSql")
+  return Promise.resolve(true);
 }
 

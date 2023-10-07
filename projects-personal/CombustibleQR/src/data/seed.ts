@@ -1,5 +1,4 @@
 export const seed = `
-  DROP TABLE IF EXISTS vehiculos;
   CREATE TABLE IF NOT EXISTS tareas(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nombre TEXT,
@@ -44,7 +43,10 @@ export const seed = `
   litrosHabilitados  TEXT,
   numeroRemito TEXT,
   idConductor INTEGER,
-  idVehiculo INTEGER
+  idVehiculo INTEGER,
+  idUsuario INTEGER,
+  fechaAlta TEXT,
+  fechaModificacion TEXT
   );
   
 

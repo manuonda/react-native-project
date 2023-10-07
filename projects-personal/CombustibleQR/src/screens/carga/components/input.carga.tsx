@@ -3,7 +3,7 @@ import { styles }  from "./styles"
 
 
 
-export default function CargaItem({label, value, name, setChange }) {
+export default function InputCarga({label, value, name, setChange }) {
   
   const handleChange = (name,e) => {
     setChange(name,e);

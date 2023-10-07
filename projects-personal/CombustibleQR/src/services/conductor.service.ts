@@ -1,4 +1,4 @@
-import { DatabaseConnection } from "../database/connection"
+import { DatabaseConnection } from "./seed.service"
 import { Conductor } from "../types/conductor.td";
 import { DatabaseService } from "./database.service";
 

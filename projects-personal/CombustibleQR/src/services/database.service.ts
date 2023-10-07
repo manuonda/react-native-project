@@ -1,9 +1,6 @@
 import * as Sql from "expo-sqlite"
-import { DB_NAME } from "../constants/environment"
-import { Asset } from "expo-asset";
 import * as FileSystem from 'expo-file-system';
 import * as SQLite from 'expo-sqlite';
-import { DatabaseConnection } from "../database/connection";
 
 //const db = DatabaseConnection.getConnection();
 const db = Sql.openDatabase("database.db");
@@ -24,8 +21,8 @@ export const DatabaseService = {
                   console.log("tx.executeSql : ", result);
                   return resolve(result);
                },function(tx, error) {
-                  console.log("Error tx : ", error);
-                  console.error("Error executing : ", error);
+                  //console.log("Error tx : ", error);
+                  //console.error("Error executing : ", error);
                   return false;
                })
             }, error => {

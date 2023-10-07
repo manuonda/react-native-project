@@ -2,7 +2,6 @@ import { Conductor } from "../types/conductor.td";
 import { Vehiculo } from "../types/vehiculo";
 
 export const isTipoCarga = (cadena :string , tipo:string )  => {
-    console.log("Cadena process : ", cadena);
     const jsonData = JSON.parse(cadena);
     return jsonData.tipo === tipo;
 }
@@ -19,7 +18,6 @@ export const converToConductor = ( cadena : string): Conductor => {
         numeroCredencial: jsonData.numeroCredencial,
         ejemplar: jsonData.ejemplar
     };
-    console.log("COnductor : ",conductor);
 
     return conductor;
   }catch(e) {
@@ -29,9 +27,7 @@ export const converToConductor = ( cadena : string): Conductor => {
 
 export const converToVehiculo = ( cadena : string): Vehiculo => {
     const jsonData = JSON.parse(cadena);
-    console.log("===========");
-    console.log("jsonData : ", jsonData);
-    console.log("===============");
+  
     let vehiculo;
     try {
       vehiculo = {
@@ -46,7 +42,6 @@ export const converToVehiculo = ( cadena : string): Vehiculo => {
         idDependencia: jsonData.idDependencia,
         dependencia: jsonData.dependencia
       };
-      console.log("vehiculo : ",vehiculo);
   
       return vehiculo;
     }catch(e) {

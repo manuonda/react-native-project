@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CargaItem from "./components/carga.item";
+import InputCarga from "./components/input.carga";
 import { Conductor } from "../../types/conductor.td";
 import { View, Button, Modal, Alert } from "react-native"
 import { FontAwesome } from '@expo/vector-icons'; 
@@ -21,21 +21,23 @@ export default function CargaConductor({ navigation, route }) {
 
 
   const [visible, setVisible] = useState(false);
-  const [data,setData] = useState<string>("");
+  const [dataQR,setDataQR] = useState<string>("");
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
   
    useEffect(() => {
       console.log(" ======= Carga Conductor ")
-      console.log("funciton data ", data);
+      console.log("funciton data ", dataQR);
       console.log("Tipo Carga : " + TipoCarga.Conductor.toString());
-      if ( data != "" && data !== undefined) {
-         const isTipo = isTipoCarga(data, TipoCarga.Conductor.toString());
+      if ( dataQR != "" && dataQR !== undefined) {
+         const isTipo = isTipoCarga(dataQR, TipoCarga.Conductor.toString());
          console.log("isTipo " + TipoCarga.Conductor.toString() + "  => "+isTipo);
+         hideModal();
          if (isTipo) {
-            const result = converToConductor(data) ;
+            const result = converToConductor(dataQR) ;
             setConductor(result);  
             updateConductor(result);
+          
          } else {
            Alert.alert("Información","El Code Qr no es de Conductor");
          }
@@ -47,7 +49,7 @@ export default function CargaConductor({ navigation, route }) {
           onPress={showModal} />
         )
       });
-   },[data])
+   },[dataQR])
 
     
    const handleChange =(name,e) => {
@@ -71,7 +73,7 @@ export default function CargaConductor({ navigation, route }) {
    return(
    
      <View  style={{ flex:1, padding: 20 }}>
-     <CargaItem 
+     <InputCarga 
         label={"Nombre"}
         name={"nombre"}
         value={conductor.nombre}
@@ -79,28 +81,28 @@ export default function CargaConductor({ navigation, route }) {
       />
 
 
-     <CargaItem 
+     <InputCarga 
         label={"Apellido"}
         name={"apellido"}
         value={conductor.apellido}
         setChange={handleChange}
       />
 
-     <CargaItem 
+     <InputCarga 
         label={"Jerarquia"}
         name={"jerarquia"}
         value={conductor.jerarquia}
         setChange={handleChange}
       />
 
-      <CargaItem 
+      <InputCarga 
         label={"Numero de Legajo"}
         name={"numeroLegajo"}
         value={conductor.numeroLegajo}
         setChange={handleChange}
       />
 
-      <CargaItem 
+      <InputCarga 
         label={"Numero de Credencial"}
         name={"numeroCredencial"}
         value={conductor.numeroCredencial}
@@ -115,7 +117,7 @@ export default function CargaConductor({ navigation, route }) {
           <Button onPress={() => setVisible(false)} 
            title="CLOSE"
           />
-          <CodeQR2 setData={setData} setVisibleModal={setVisible}/>
+          <CodeQR2 setData={setDataQR} setVisibleModal={setVisible}/>
         </Modal>
       </Portal>
       

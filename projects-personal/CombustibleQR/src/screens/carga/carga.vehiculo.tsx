@@ -1,6 +1,6 @@
 import { Portal, Text } from "react-native-paper"
 import { FontAwesome } from '@expo/vector-icons'; 
-import CargaItem from "./components/carga.item"
+import InputCarga from "./components/input.carga"
 import { Alert, Button, Modal, View } from "react-native"
 import { useEffect, useState } from "react";
 import { Vehiculo } from "../../types/vehiculo";
@@ -67,7 +67,7 @@ export default function CargaVehiculo({ navigation, params }) {
 
     return (
         <View style={{ flex: 1, padding: 20 }}>
-            <CargaItem
+            <InputCarga
                 label={"Tipo Vehiculo"}
                 name={"tipoVehiculo"}
                 value={vehiculo.tipoVehiculo}
@@ -75,42 +75,42 @@ export default function CargaVehiculo({ navigation, params }) {
             />
 
 
-            <CargaItem
+            <InputCarga
                 label={"Tipo de Combustible"}
                 name={"tipoCombustible"}
                 value={vehiculo.tipoCombustible}
                 setChange={handleChange}
             />
 
-            <CargaItem
+            <InputCarga
                 label={"Nro. Legajo"}
                 name={"numeroLegajo"}
                 value={vehiculo.numeroLegajo}
                 setChange={handleChange}
             />
 
-            <CargaItem
+            <InputCarga
                 label={"Numero de Chasis"}
                 name={"numeroChasis"}
                 value={vehiculo.numeroChasis}
                 setChange={handleChange}
             />
 
-            <CargaItem
+            <InputCarga
                 label={"Numero de Motor"}
                 name={"numeroMotor"}
                 value={vehiculo.numeroMotor}
                 setChange={handleChange}
             />
 
-            <CargaItem
+            <InputCarga
                 label={"Chapa Patente"}
                 name={"chapaPatente"}
                 value={vehiculo.chapaPatente}
                 setChange={handleChange}
             />
 
-            <CargaItem
+            <InputCarga
                 label={"Dependencia"}
                 name={"dependencia"}
                 value={vehiculo.dependencia}

@@ -1,21 +1,31 @@
 import { create } from "zustand";
 import { Conductor } from "../types/conductor.td";
 import { Vehiculo } from "../types/vehiculo";
-import { Combustible } from "../types/carga.combustible";
+import { CargaCombustible } from "../types/carga.combustible";
 
 interface ICargaCombustible {
     conductorState: Conductor;
     vehiculoState: Vehiculo;
-    combustibleState: Combustible,
+    combustibleState: CargaCombustible,
     updateConductor: (conductor: any) => void;
     updateVehiculo :(vehiculo: Vehiculo) => void;
-    updateCombustible: (combustible: Combustible) => void;
+    updateCombustible: (combustible: CargaCombustible) => void;
+    reset:() => void;
+    cargas: Array<CargaCombustible>;
+    setCargas:(cargas:Array<CargaCombustible>) => void;
 }
 export const useCargaCombustibleStore = create<ICargaCombustible>((set) =>({
-    conductorState: {id:23,apellido:'david garcia'},
+    conductorState: {id:null},
     combustibleState: {id:null},
     vehiculoState: {id:null},
+    cargas:[],
     updateConductor: (conductor: Conductor) => set({conductorState: conductor}),
     updateVehiculo: (vehiculo: Vehiculo) => set({vehiculoState: vehiculo}),
-    updateCombustible:(combustible: Combustible) =>set({combustibleState: combustible}),
+    updateCombustible:(combustible: CargaCombustible) =>set({combustibleState: combustible}),
+    reset:() => set({
+        conductorState:{id:null},
+        vehiculoState:{id:null},
+        combustibleState:{id:null}
+    }),
+    setCargas:(cargas:Array<CargaCombustible>) => set({cargas: cargas})
 }));

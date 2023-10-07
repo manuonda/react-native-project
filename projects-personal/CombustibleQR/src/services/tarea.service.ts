@@ -1,4 +1,4 @@
-import { DatabaseConnection } from "../database/connection"
+import { DatabaseConnection } from "./seed.service"
 import { Tarea } from "../types/tarea.td";
 import { DatabaseService } from "./database.service";
 
