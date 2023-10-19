@@ -69,11 +69,10 @@ export default function Cargas({ navigation }) {
       const list = seed.split(";");
       for (const table of list) {
         if (table.trim() !== "" && table.trim().length > 0) {
-          console.log("execute sql");
+          //console.log("execute sql");
           await DatabaseService.executeSQL(table, []);
         }
       }
-      console.log("salida aqui paso");
       const data = await CargaCombustibleService.all();
       //console.log("result cargas : ", data);
       setCargaCombustibles(data);
@@ -91,10 +90,9 @@ export default function Cargas({ navigation }) {
       return () => {
        
       };
-    }, [cargaCombustibles])
+    }, [])
   );
   useEffect(() => {
-    console.log("cargar Data");
     cargarData();
   }, [])
 
@@ -157,6 +155,8 @@ export default function Cargas({ navigation }) {
               text='Editar'
               key={'Editar'} 
               cargas={cargaCombustibles}
+
+              setCargaCombustibles={setCargaCombustibleSelect}
             />
            <ItemActionSheet 
               action='DELETE' actionSheetRef={actionSheetRef}
@@ -165,6 +165,7 @@ export default function Cargas({ navigation }) {
               text='Eliminar'
               key={'Eliminar'} 
               cargas={cargaCombustibles}
+              setCargaCombustibles={setCargaCombustibleSelect}
            />
            <ItemActionSheet 
              action='CANCELAR'
@@ -174,6 +175,7 @@ export default function Cargas({ navigation }) {
              text='Cancelar'
              key={'Cancelar'}
              cargas={cargaCombustibles}
+             setCargaCombustibles={setCargaCombustibleSelect}
            />
           </View>
 

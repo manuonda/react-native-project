@@ -9,17 +9,17 @@ type PropsActionSheet = {
     actionSheetRef: any,
     action: string,
     cargas: Array<CargaCombustible>;
+    setCargaCombustibles: any;
 }
 
-export const ItemActionSheet = ({ cargaCombustible, text, action, navigation, actionSheetRef,cargas}: PropsActionSheet) => {
+export const ItemActionSheet = ({ cargaCombustible, text, action, navigation, actionSheetRef,cargas,setCargaCombustibles}: PropsActionSheet) => {
    
     const handlePress = () => {
+        console.log("cargaCombustible => id :", cargaCombustible.id);
         if (action === "EDIT") {
-            navigation.navigate('Conductor', {
-                screen: 'Conductor',
-                params: {
-                    id: cargaCombustible.id
-                }
+            navigation.navigate('Conductor',{
+                    id: cargaCombustible.id,
+                    cargaCombustible: cargaCombustible
             })
         } else if (action === "DELETE") {
             console.log("cargaCombustible: " , cargaCombustible.conductor);
@@ -41,6 +41,7 @@ export const ItemActionSheet = ({ cargaCombustible, text, action, navigation, ac
                                 console.log("apasi aqui results");
                                 if( cargas && cargas.length > 0 ) {
                                     cargas  = cargas.filter( x => x.id !== cargaCombustible.id);
+                                    setCargaCombustibles(cargas);
                                 }
                             }
                             actionSheetRef?.current.hide();

@@ -1,5 +1,5 @@
 export type Vehiculo = {
-    id: number;
+    id?: number;
     idTipoVehiculo?:number;
     tipoVehiculo?: string;
     idTipoCombustible?:number;

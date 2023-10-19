@@ -18,7 +18,7 @@ export const DatabaseService = {
          db.transaction(
             function(tx){
                tx.executeSql(sql, args, (tx, result) => {
-                  console.log("tx.executeSql : ", result);
+                  //console.log("tx.executeSql : ", result);
                   return resolve(result);
                },function(tx, error) {
                   //console.log("Error tx : ", error);
@@ -26,9 +26,9 @@ export const DatabaseService = {
                   return false;
                })
             }, error => {
-                console.log("aquiii errororororor : ", error);
+                console.log(" errororororor : ", error);
             }, () => {
-               console.log("success db")  
+               //console.log("success db")  
             }
          );
       })

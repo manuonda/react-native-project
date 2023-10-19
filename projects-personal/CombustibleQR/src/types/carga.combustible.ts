@@ -2,7 +2,7 @@ import { Conductor } from "./conductor.td";
 import { Vehiculo } from "./vehiculo";
 
 export type CargaCombustible = {
-    id: number;
+    id?: number;
     idEstacionServicio?: string;
     estacionServicio?: string;
     kilometraje?: string;

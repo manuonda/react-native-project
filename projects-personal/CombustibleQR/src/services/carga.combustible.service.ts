@@ -134,8 +134,6 @@ export const CargaCombustibleService = {
          inner join conductores conductor on conductor.id=carga.idConductor       
         `;
         //sql = "select * from cargas";
-        console.log("sql : ", sql);
-        console.log("")
         const result: any = await DatabaseService.executeSQL(sql, []);
         const { rows } = result;
         const { _array } = rows;
