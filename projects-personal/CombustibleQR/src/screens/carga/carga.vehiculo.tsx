@@ -82,7 +82,7 @@ export default function CargaVehiculo({ navigation, route }) {
             </> : ""}
 
             <Text>Vehiculo id : {vehiculo.id}</Text>
-
+            <Text>tipoVehiculo :{vehiculo.tipoVehiculo}</Text>
             <InputCarga
                 label={"Tipo Vehiculo"}
                 name={"tipoVehiculo"}

@@ -28,17 +28,26 @@ export default function Carga({ navigation, route }) {
     const [showErrorComplete, setShowErrorComplete] = useState(false);
 
     const {handleSubmit, control, reset ,formState:{errors}} = useForm<TCargaCombustible>({
-       resolver: yupResolver(SchemaCargaCombustible)
+       resolver: yupResolver(SchemaCargaCombustible),
+       defaultValues:{
+        id: cargaCombustible.id,
+        kilometraje: cargaCombustible.kilometraje,
+        nivelTanque: cargaCombustible.nivelTanque,
+        litrosHabilitados: cargaCombustible.litrosHabilitados,
+        estacionServicio: cargaCombustible.estacionServicio,
+        idEstacionServicio: cargaCombustible.idEstacionServicio,
+        idVehiculo: cargaCombustible.idVehiculo
+       }
     });
 
     useEffect(() => {
        if(cargaCombustibleParam !== undefined && cargaCombustibleParam !== null ) {
-        console.log("cargaCombustibl2e ==> ", cargaCombustibleParam);
         setCargaCombustible(cargaCombustibleParam);
         //sete los valores de hook-form
-        reset({...cargaCombustibleParam});
+        reset({
+         ...cargaCombustibleParam});
        }
-    },[cargaCombustible])
+    },[])
  
 
     const handleCancelar = () => {
@@ -48,18 +57,17 @@ export default function Carga({ navigation, route }) {
     }
     
     const handleError = (error) => {
-      console.log(error);
+      console.log("error  : ", error);
       setShowErrorComplete(true);
     }
 
-    const handleNext =async  (data) => {
-      console.log("cargaCombustible1 : ",cargaCombustible);
-      console.log("data guradar : ",data);
+    const handleNext =async  (data:TCargaCombustible) => {
+     
       setCargaCombustible({
         ...cargaCombustible,
         ...data
       });
-      console.log("cargaCombustible2: ",cargaCombustible);
+      //console.log("cargaCombustible2: ",cargaCombustible);
       Alert.alert("Información","Estan correcto los datos cargados?",
       [
           {
@@ -67,7 +75,7 @@ export default function Carga({ navigation, route }) {
           }, {
             text: 'Aceptar',
             onPress: () =>  {
-             handleGuardar();
+             handleGuardar(data);
             },
             style: 'cancel',
           }
@@ -75,22 +83,15 @@ export default function Carga({ navigation, route }) {
       )
     }
 
-    const handleGuardar = async () => {
+    const handleGuardar = async (cargaCombustible: TCargaCombustible) => {
       try {
-        
-       
-        console.log("conductor.id => ", conductor.id);
         if ( conductor.id === null || conductor.id === undefined ) {
-          console.log("save conductor");
           conductor = await  ConductorService.guardar(conductor);    
         }
         if( vehiculo.id === null || vehiculo.id === undefined ) { 
           vehiculo = await VehiculoService.guardar(vehiculo);
         }
-        console.log("conductor2 : ", conductor.id);
-        console.log("vehiculo2 : ", vehiculo.id);
-        console.log("cargandoCombusitlbe : ", cargaCombustible);
-
+      
         setCargaCombustible({
           ...cargaCombustible,
           idConductor : conductor.id,
@@ -101,27 +102,17 @@ export default function Carga({ navigation, route }) {
         cargaCombustible.idVehiculo = vehiculo.id;
         cargaCombustible.idUsuario =1;
 
-        console.log("cargaCombustible antes de guardar : ", cargaCombustible);
-       
-       
-      
         let resultCarga = null;
-        console.log("carga combustible  ===>  ", cargaCombustible);
+
         if ( cargaCombustible.id === null) {
            cargaCombustible.fechaAlta=new Date().toLocaleDateString()
-           console.log("carga save");
            resultCarga = await CargaCombustibleService.guardar(cargaCombustible);
        
         } else {
-           console.log("carga update");
            cargaCombustible.fechaModificacion=new Date().toLocaleDateString()
-           setCargaCombustible({
-               ...cargaCombustible,
-               fechaModificacion: new Date().toLocaleDateString()
-           })
+           console.log("data que onda aqui ======> ",cargaCombustible);
            resultCarga = await CargaCombustibleService.update(cargaCombustible);
         }
-        console.log("resultCarga : ", resultCarga);
 
         if ( resultCarga && resultCarga.id !== null ) {
            Alert.alert("Información","Carga Combustible Guardada",
@@ -158,7 +149,7 @@ export default function Carga({ navigation, route }) {
       </>: ""}
 
        <Text>id {cargaCombustible?.id} </Text>
-            
+            <Text>cargaCombusitble : {cargaCombustible.estacionServicio}</Text>
             <InputCarga
                 label={"Estacion Servicio"}
                 name={"estacionServicio"}

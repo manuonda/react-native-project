@@ -4,7 +4,7 @@ import * as yup from 'yup';
 
 export const SchemaCargaCombustible = yup.object().shape({
    id: yup.number(),
-   idEstacionServicio: yup.string(),
+   idEstacionServicio: yup.string().notRequired(),
    estacionServicio: yup.string().required('Campo Requerido'),
    kilometraje: yup.string().required('Campo Requerido'),
    nivelTanque: yup.string().required('Campo Requerido'),
@@ -14,5 +14,5 @@ export const SchemaCargaCombustible = yup.object().shape({
    idVehiculo:  yup.number(),
    idUsuario:  yup.number(),
    fechaAlta: yup.string(),
-   fechaModificacion: yup.string(),
+   fechaModificacion: yup.string().notRequired(),
 });

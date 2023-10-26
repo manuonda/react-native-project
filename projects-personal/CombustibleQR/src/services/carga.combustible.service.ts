@@ -68,29 +68,55 @@ export const CargaCombustibleService = {
     },
 
     update: async (cargaCombustible: CargaCombustible):Promise<any>=> {
-       
-        // const sql = `update cargas set 
-        //     nombre = ? , descripcion = ?, fechaVencimiento = ?,
-        //     repetir = ?, nota = ? , filePath = ? , cameraPath = ?
-        //     where id=${id}`;
-        // const params = [
-        //     tarea.nombre,
-        //     tarea.descripcion,
-        //     tarea.fechaVencimiento,
-        //     tarea.repetir,
-        //     tarea.nota,
-        //     tarea.filePath,
-        //     tarea.cameraPath
-        // ];
-        // try {
-        //     const result = await DatabaseService.executeSQL(sql, params);
-        //     console.log("Resultado : ", result);
-        //     return Promise.resolve(result);
+  
+        console.log("update cargaCombustible : ",cargaCombustible);
+        const sql = `update cargas set
+            idEstacionServicio = ?, 
+            estacionServicio = ? , 
+            kilometraje = ?, 
+            nivelTanque = ?,
+            litrosHabilitados = ?,
+            numeroRemito = ?,
+            idConductor = ?,
+            idVehiculo = ?,
+            idUsuario = ?,
+            fechaModificacion = ?
+            where id=${cargaCombustible.id}`;
+        const params = [
+          cargaCombustible.idEstacionServicio,
+          cargaCombustible.estacionServicio,
+          cargaCombustible.kilometraje,
+          cargaCombustible.nivelTanque,
+          cargaCombustible.litrosHabilitados,
+          cargaCombustible.numeroRemito,
+          cargaCombustible.idConductor,
+          cargaCombustible.idVehiculo,
+          cargaCombustible.idUsuario,
+          cargaCombustible.fechaModificacion    
+        ];
 
-        // } catch (error) {
-        //     console.error("Error save data: ", error);
-        //     return Promise.reject(error);
-        // }
+        
+        try {
+            const result: any  = await DatabaseService.executeSQL(sql, params);
+            const { insertId } = result;
+            console.log("result update carga : ", insertId);
+            let carga: CargaCombustible = {
+                id : insertId,
+                idEstacionServicio:cargaCombustible.idEstacionServicio,
+                estacionServicio: cargaCombustible.estacionServicio,
+                kilometraje: cargaCombustible.kilometraje,
+                nivelTanque: cargaCombustible.nivelTanque,
+                litrosHabilitados : cargaCombustible.litrosHabilitados ,
+                numeroRemito :cargaCombustible.numeroRemito,
+                idConductor: cargaCombustible.idConductor,
+                idVehiculo : cargaCombustible.idVehiculo
+            }
+            return Promise.resolve(carga);
+
+        } catch (error) {
+            console.error("Error update data: ", error);
+            return Promise.reject(error);
+        }
 
 
     },

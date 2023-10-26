@@ -18,15 +18,14 @@ export const DatabaseService = {
          db.transaction(
             function(tx){
                tx.executeSql(sql, args, (tx, result) => {
-                  //console.log("tx.executeSql : ", result);
+                  console.log("tx.executeSql : ", result);
                   return resolve(result);
                },function(tx, error) {
-                  //console.log("Error tx : ", error);
-                  //console.error("Error executing : ", error);
+                  console.error("Error executing : ", error);
                   return false;
                })
             }, error => {
-                console.log(" errororororor : ", error);
+                console.log(" Error executeSQL : ", error);
             }, () => {
                //console.log("success db")  
             }
